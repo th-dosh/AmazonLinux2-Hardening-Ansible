@@ -1,0 +1,38 @@
+---
+
+- hosts: webservers
+  gather_facts: true
+  become: yes
+
+  vars:
+    ntp_servers:
+      - 0.amazon.pool.ntp.org
+      - 1.amazon.pool.ntp.org
+      - 2.amazon.pool.ntp.org
+      - 3.amazon.pool.ntp.org
+    cis_level_1_exclusions:
+    # Allows packer scripts to build by enabling /tmp
+      - 1.1.2
+      - 1.1.3
+      - 1.1.4
+      - 1.1.5
+    # Firewall rules and locks us out at a point
+      - 3.1.1
+      - 3.3.2
+      - 3.3.3
+      - 3.5.1.1
+      - 3.5.1.4
+      - 3.5.2.1
+
+    cis_level_2_exclusions:
+      - 6.1.1
+      - 1.6.1.1
+      - 1.6.1.2
+      - 1.6.1.3
+      - 1.6.1.4
+      - 1.6.2
+      - 4.1.1.2
+
+  roles:
+
+      - AmazonLinux2-Hardening-Ansible
