@@ -1,18 +1,26 @@
+TASK [AmazonLinux2-Hardening-Ansible : 1.1.19 - Disable autofs] ****************
 fatal: [app1]: FAILED! => {"changed": false, "failed_when_result": true, "msg": "Could not find the requested service autofs: host"}
-fatal: [app1]: FAILED! => {"changed": true, "cmd": ["which", "prelink"], "delta": "0:00:00.039678", "end": "2021-04-05 16:58:04.589303", "msg": "non-zero return code", "rc": 1, "start": "2021-04-05 16:58:04.549625", "stderr": "which: no prelink in (/sbin:/bin:/usr/sbin:/usr/bin)", "stderr_lines": ["which: no prelink in (/sbin:/bin:/usr/sbin:/usr/bin)"], "stdout": "", "stdout_lines": []}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service avahi-daemon: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service cups: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service dhcpd: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service slapd: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service named: host"}
+--
 fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service vsftpd: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service smb: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service squid: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service snmpd: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service ypserv: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service rsh: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service rlogin: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service rexec: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service telnet: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service tftp: host"}
-fatal: [app1]: FAILED! => {"changed": false, "msg": "Could not find the requested service ntalk: host"}
+...ignoring
+
+TASK [AmazonLinux2-Hardening-Ansible : 2.1.10 - Ensure HTTP server is not enabled] ***
+failed: [app1] (item=httpd) => {"ansible_loop_var": "item", "changed": false, "item": "httpd", "msg": "Could not find the requested service httpd: host"}
+failed: [app1] (item=apache) => {"ansible_loop_var": "item", "changed": false, "item": "apache", "msg": "Could not find the requested service apache: host"}
+failed: [app1] (item=apache2) => {"ansible_loop_var": "item", "changed": false, "item": "apache2", "msg": "Could not find the requested service apache2: host"}
+failed: [app1] (item=nginx) => {"ansible_loop_var": "item", "changed": false, "item": "nginx", "msg": "Could not find the requested service nginx: host"}
+failed: [app1] (item=lighttpd) => {"ansible_loop_var": "item", "changed": false, "item": "lighttpd", "msg": "Could not find the requested service lighttpd: host"}
+...ignoring
+
+TASK [AmazonLinux2-Hardening-Ansible : 2.1.11 - Ensure IMAP and POP3 server is not enabled] ***
+failed: [app1] (item=dovecot) => {"ansible_loop_var": "item", "changed": false, "item": "dovecot", "msg": "Could not find the requested service dovecot: host"}
+failed: [app1] (item=cyrus-imapd) => {"ansible_loop_var": "item", "changed": false, "item": "cyrus-imapd", "msg": "Could not find the requested service cyrus-imapd: host"}
+--
+changed: [app1] => (item={'regexp': '^#?ucredit=', 'line': 'ucredit=-1'})
+changed: [app1] => (item={'regexp': '^#?ocredit=', 'line': 'ocredit=-1'})
+changed: [app1] => (item={'regexp': '^#?lcredit=', 'line': 'lcredit=-1'})
+
+
+TASK [AmazonLinux2-Hardening-Ansible : 6.2.7 - Ensure users' home directories exist.] ***
+failed: [app1] (item=/etc/bashrc: line 93: 027: command not found) => {"ansible_loop_var": "item", "changed": false, "item": "/etc/bashrc: line 93: 027: command not found", "msg": "useradd: invalid home directory ' line 93'\n", "name": "/etc/bashrc", "rc": 3}
+--
