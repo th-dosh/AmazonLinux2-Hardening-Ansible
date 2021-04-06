@@ -18,6 +18,8 @@
           deny=5
           unlock_time=900'
     state: before
+  retries: 2
+  delay: 2
   tags:
     - level-1
     - section-5
@@ -38,6 +40,8 @@
           deny=5
           unlock_time=900'
     state: after
+  retries: 2
+  delay: 2
   tags:
     - level-1
     - section-5
@@ -58,6 +62,8 @@
           deny=5
           unlock_time=900'
     state: after
+  retries: 2
+  delay: 2
   tags:
     - level-1
     - section-5
@@ -73,6 +79,8 @@
     new_control: '[success=1 default=bad]'
     module_arguments: ''
     state: updated
+  retries: 2
+  delay: 2
   tags:
     - level-1
     - section-5
