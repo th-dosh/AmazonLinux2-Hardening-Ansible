@@ -4,9 +4,20 @@
 # 4.2.4 Ensure permissions on all logfiles are configured
 
 - name: 4.2.4 - Ensure permissions on all logfiles are configured
-  shell: "find /var/log -type f -exec chmod g-wx,o-rwx {} +"
+  #shell: "find /var/log -type f -exec chmod g-wx,o-rwx {} +"
+  shell: "find /var/log -type f -perm '/o+r' -exec chmod 'g-wx,o-rwx' {}"
+
   tags:
     - level-1
     - section-4
     - "4.2.4"
     - scored
+
+
+#name: 4.2.4.1 - Ensure permissions on specific logfiles are configured
+#8663128   76 -rw-r--r--   1 root     root        75320 Apr  5 23:53 /var/log/sa/sar05
+# 8663232  192 -rw-r--r--   1 root     root       168800 Apr  6 11:50 /var/log/sa/sa06
+# find: ‘/var/log/audit’: Permission denied
+# find: ‘/var/log/amazon/ssm’: Permission denied
+#  43029 8196 -rw-r-----   1 root     systemd-journal  8388608 Apr  6 11:54 /var/log/journal/ec27041a88f931b46d484ac723cf13ee/system.journal
+#    112 8192 -rw-r-x---   1 root     systemd-journal  8388608 Apr  5 19:47 /var/log/journal/ec27041a88f931b46d484ac723cf13ee/user-1000.journal
