@@ -2,12 +2,112 @@
 ---
 
 # 5.4.4 Ensure default user umask is 027 or more restrictive
+#Optimize below into variables
 
 - name: 5.4.4 - Ensure default user umask is 027 or more restrictive
   lineinfile:
-    dest: "{{ item }}"
-    line: "{{ cis_umask_default }}"
-  with_items: "{{ cis_umask_shell_files }}"
+    path: /etc/bashrc
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile.d/bash_completion.sh
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile.d/colorgrep.sh
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile.d/colorls.sh
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile.d/vim.sh
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+ 
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile.d/which2.sh
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile.d/256term.sh
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile.d/lang.sh
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile.d/less.sh
+    line: umask 027
+    state: present
+  tags:
+    - level-1
+    - section-5
+    - "5.4.4"
+    - scored
+ 
+- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
+  lineinfile:
+    path: /etc/profile
+    line: umask 027
+    state: present
   tags:
     - level-1
     - section-5
