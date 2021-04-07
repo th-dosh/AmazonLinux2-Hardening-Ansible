@@ -10,3 +10,48 @@
     - section-5
     - "5.3.4"
     - scored
+
+- name: 5.3.4 - Ensure password-auth hashing algorithm is SHA-512
+  replace:
+    path: /etc/pam.d/password-auth
+
+    regexp: "{{ item.From }}"
+    replace: "{{ item.To }}"
+  
+  with_items:
+    - { From: '^\password   sufficient pam_unix.so remember=5', To: 'password   sufficient pam_unix.so remember=5  sha512'}
+
+  tags:
+    - level-1
+    - section-5
+    - "5.3.4"
+    - scored
+
+- name: 5.3.4 - Ensure system-auth hashing algorithm is SHA-512
+  replace:
+    path: /etc/pam.d/system-auth
+    regexp: "{{ item.From }}"
+    replace: "{{ item.To }}"
+  
+  with_items:
+    - { From: '^\password   sufficient pam_unix.so remember=5', To: 'password   sufficient pam_unix.so remember=5  sha512'}
+
+  tags:
+    - level-1
+    - section-5
+    - "5.3.4"
+    - scored
+
+# vars:
+#   options: 'sha256'
+# tasks:
+# - name: 5.3.4 - Ensure password-auth hashing algorithm is SHA-512
+#   lineinfile:
+#     path: /etc/pam.d/system-auth
+#     regexp: '^password   sufficient pam_unix.so remember=5'
+#     line: "password   sufficient pam_unix.so remember=5 {{  options | join(' sha512')}}"
+#   tags:
+#     - level-1
+#     - section-5
+#     - "5.3.4"
+#     - scored
