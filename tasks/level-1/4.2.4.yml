@@ -18,5 +18,41 @@
   tags:
     - level-1
     - section-4
-    - "4.2.4.1"
+    - "4.2.4"
+    - scored
+
+- name: 4.2.4.1 - 4.2.4 - Ensure permissions on all logfiles are configured
+  shell: "chmod 000 /var/log/sa/sar06"
+
+  tags:
+    - level-1
+    - section-4
+    - "4.2.4"
+    - scored
+
+- name: 4.2.4.1 - 4.2.4 - Ensure permissions on all logfiles are configured
+  shell: "chmod 000 /var/log/sa/sa07"
+
+  tags:
+    - level-1
+    - section-4
+    - "4.2.4"
+    - scored
+
+- name: 4.2.4.1 - 4.2.4 - Ensure permissions on all logfiles are configured
+  shell: "chmod 000 /var/log/sa/sar07"
+
+  tags:
+    - level-1
+    - section-4
+    - "4.2.4"
+    - scored
+
+- name: 4.2.4.1 - 4.2.4 - Ensure permissions on all logfiles are configured
+  shell: "chmod 000 /var/log/sa/sa08"
+
+  tags:
+    - level-1
+    - section-4
+    - "4.2.4"
     - scored
