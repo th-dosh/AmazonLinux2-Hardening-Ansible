@@ -34,5 +34,4 @@
       - 4.1.1.2
 
   roles:
-
-      - AmazonLinux2-Hardening-Ansible
+    - AmazonLinux2-Hardening-Ansible
