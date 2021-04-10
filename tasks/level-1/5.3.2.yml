@@ -7,7 +7,7 @@
   pamd:
     name: "{{ item }}"
     type: auth
-    control: sufficient
+    control: required
     module_path: pam_unix.so
     new_type: auth
     new_control: required
@@ -101,3 +101,28 @@
     - scored
 
 
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_unix.so)
+  replace:
+    path:  /etc/pam.d/password-auth
+    regexp: "{{ item.From }}"
+    replace: "{{ item.To }}"
+  with_items:
+    - { From: '^\auth       [success=1 default=bad] pam_unix.so nullok try_first_pass', To: 'auth       [success=1 default=bad] pam_unix.so'}
+  tags:
+    - level-1
+    - section-5
+    - "5.3.2"
+    - scored
+
+- name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_unix.so)
+  replace:
+    path:  /etc/pam.d/system-auth
+    regexp: "{{ item.From }}"
+    replace: "{{ item.To }}"
+  with_items:
+    - { From: '^\auth       [success=1 default=bad] pam_unix.so nullok try_first_pass', To: 'auth       [success=1 default=bad] pam_unix.so'}
+  tags:
+    - level-1
+    - section-5
+    - "5.3.2"
+    - scored
