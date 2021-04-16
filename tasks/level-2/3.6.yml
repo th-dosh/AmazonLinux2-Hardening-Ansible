@@ -1,0 +1,22 @@
+# Standards: 0.11
+---
+
+# 3.6 Disable IPv6
+- name: 3.6 Update grub with IPv6 disabled
+  shell: "sed -i 's/console=tty0/ipv6.disable=1 console=tty0/g' /etc/default/grub"
+  tags:
+    - "3.6"
+    - level-2
+    - section-4
+    - scored
+
+- name: 4.1.3 Update grub
+  shell: "grub2-mkconfig -o /boot/grub2/grub.cfg"
+  tags:
+    - "3.6"
+    - level-2
+    - section-4
+    - not-scored
+
+- debug:
+    msg: " Reboot required to apply changes "
