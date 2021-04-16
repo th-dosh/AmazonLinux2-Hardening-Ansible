@@ -20,3 +20,7 @@
   service:
     name: ntpd
     state: restarted
+
+- name: Merge audit rule files
+  command: augenrules --load
+  ignore_errors: yes

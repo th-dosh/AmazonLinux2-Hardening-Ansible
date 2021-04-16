@@ -22,6 +22,7 @@
   with_items:
     - '# 4.1.16 Ensure system administrator actions (sudolog) are collected'
     - '-w /var/log/sudo.log -p wa -k actions'
+  notify: Merge audit rule files
   when:
     ("'-w /var/log/sudo.log -p wa -k actions' not in scope.stdout")
   tags:

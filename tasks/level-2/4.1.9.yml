@@ -28,6 +28,7 @@
     ("'-w /var/run/utmp -p wa -k session' not in session.stdout") or
     ("'-w /var/log/wtmp -p wa -k session' not in session.stdout") or
     ("'-w /var/log/btmp -p wa -k session' not in session.stdout")
+  notify: Merge audit rule files
   tags:
     - "4.1.9"
     - level-2

@@ -32,6 +32,7 @@
     ("'-w /etc/issue -p wa -k system-locale' not in system-locale.stdout") or
     ("'-w /etc/issue.net -p wa -k system-locale' not in system-locale.stdout") or
     ("'-w /etc/sysconfig/network -p wa -k system-locale' not in system-locale.stdout")
+  notify: Merge audit rule files
   tags:
     - "4.1.6"
     - level-2

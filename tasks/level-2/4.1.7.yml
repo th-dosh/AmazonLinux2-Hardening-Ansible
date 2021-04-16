@@ -24,6 +24,7 @@
     - '-w /etc/selinux/ -p wa -k MAC-policy'
   when:
     ("'-w /etc/selinux/ -p wa -k MAC-policy' not in MAC-policy.stdout")
+  notify: Merge audit rule files
   tags:
     - "4.1.7"
     - level-2
