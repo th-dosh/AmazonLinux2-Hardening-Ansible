@@ -10,7 +10,7 @@
   ignore_errors: true
   tags:
     - "4.1.14"
-    - level-1
+    - level-2
     - section-4
     - scored
 
@@ -29,6 +29,6 @@
   notify: Merge audit rule files
   tags:
     - "4.1.14"
-    - level-1
+    - level-2
     - section-4
     - scored
