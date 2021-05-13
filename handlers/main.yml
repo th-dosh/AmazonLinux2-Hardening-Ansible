@@ -24,3 +24,6 @@
 - name: Merge audit rule files
   command: augenrules --load
   ignore_errors: yes
+
+- name: Update grub
+  command: "grub2-mkconfig -o /boot/grub2/grub.cfg"

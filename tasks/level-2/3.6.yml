@@ -2,16 +2,24 @@
 ---
 
 # 3.6 Disable IPv6
-- name: 3.6 Update grub with IPv6 disabled
-  command: "sed -i 's/console=tty0/ipv6.disable=1 console=tty0/g' /etc/default/grub"
+- name: 3.6 Ensure that IPv6 is disabled
+  command: "grep ipv6 /etc/default/grub"
+  register: ipv6
+  changed_when: False
+  ignore_errors: true
   tags:
     - "3.6"
     - level-2
     - section-4
-    - scored
+    - not-scored
 
-- name: 4.1.3 Update grub
-  command: "grub2-mkconfig -o /boot/grub2/grub.cfg"
+- name: 3.6 Disabling IPv6
+  replace:
+    path: /etc/default/grub
+    regexp: 'console=tty0'
+    replace: "ipv6.disable=1 console=tty0"
+  when: "'ipv6.disable=1' not in ipv6.stdout"
+  notify: Update grub
   tags:
     - "3.6"
     - level-2

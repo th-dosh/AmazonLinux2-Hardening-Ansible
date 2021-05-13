@@ -3,13 +3,14 @@
 
 # 4.1.2 Ensure auditd service is enabled (Scored)
 - name: 4.1.2 Ensure auditd service is enabled (Scored)
-  command: yum -q list audit
+  yum:
+    list: audit
   ignore_errors: true
   register: auditd_4_1_2
   tags:
     - level-2
     - section-4
-    - "4.2.1.1"
+    - "4.1.2"
     - scored
 
 - name: 4.1.2 Ensure auditd service is enabled (Scored)
@@ -17,11 +18,10 @@
     name: "auditd"
     enabled: true
     state: started
-  when:
-    - auditd_4_1_2.rc is not defined or auditd_4_1_2.rc == 0
+  when: "auditd_4_1_2.rc is not defined or auditd_4_1_2.rc == 0"
   ignore_errors: false
   tags:
     - level-2
     - section-4
-    - "4.2.1.1"
+    - "4.1.2"
     - scored

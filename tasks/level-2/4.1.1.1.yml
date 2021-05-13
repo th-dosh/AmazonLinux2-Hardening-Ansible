@@ -7,6 +7,9 @@
   copy:
     src: etc/audit/auditd.conf
     dest: /etc/audit/auditd.conf
+    owner: root
+    group: root
+    mode: '0640'
 
 - name: 4.1.1.1 Ensure audit log storage size is configured - log
   lineinfile:
