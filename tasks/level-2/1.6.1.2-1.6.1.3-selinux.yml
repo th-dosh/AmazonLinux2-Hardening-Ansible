@@ -1,9 +1,4 @@
 ---
-- name: 1.6.1.2 - 1.6.1.3 SELinux and setroubleshoot installation
-  hosts: all
-  become: yes
-
-  tasks:
 
   - name: making directory for packages
     file: 
