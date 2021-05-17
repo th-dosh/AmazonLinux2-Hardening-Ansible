@@ -22,6 +22,7 @@
 
 - name: 3.2.1 - Ensure source routed packets are not accepted in active kernel parameters
   command: "{{ item }}"
+  changed when: false
   with_items:
     - "sysctl -w net.ipv4.conf.all.accept_source_route=0"
     - "sysctl -w net.ipv4.conf.default.accept_source_route=0"

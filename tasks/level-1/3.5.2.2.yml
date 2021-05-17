@@ -5,6 +5,7 @@
 
 - name: 3.5.2.2 - Ensure IPv6 loopback traffic is configured
   shell: "ip6tables -A INPUT -i lo -j ACCEPT && ip6tables -A OUTPUT -o lo -j ACCEPT && ip6tables -A INPUT -s ::1 -j DROP"
+  changed_when: false
   tags:
     - level-1
     - section-1

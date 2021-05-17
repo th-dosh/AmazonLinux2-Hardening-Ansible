@@ -20,6 +20,7 @@
 
 - name: 3.2.3 - Ensure secure ICMP redirects are not accepted by active kernel parameters
   command: "{{ item }}"
+  changed_when: false
   with_items:
     - "sysctl -w net.ipv4.conf.all.secure_redirects=0"
     - "sysctl -w net.ipv4.conf.default.secure_redirects=0"

@@ -4,7 +4,8 @@
 # 4.2.2.1 Ensure syslog-ng service is enabled
 
 - name: 4.2.2.1 - Check if syslog-ng is installed
-  command: yum -q list syslog-ng
+  yum:
+    list: syslog-ng
   ignore_errors: true
   register: syslog_ng_4_2_2_1
   when: cis_enable_syslog_ng

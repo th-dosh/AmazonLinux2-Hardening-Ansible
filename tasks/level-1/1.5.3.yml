@@ -6,6 +6,7 @@
 - name: Check if prelink binary exists
   command: which prelink
   ignore_errors: true
+  changed_when: false
   register: which_1_5_3
   tags:
     - level-1

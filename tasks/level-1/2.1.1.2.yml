@@ -1,5 +1,5 @@
 - name: 2.1.1.2 - Drop in ntp.conf
-  template:
+  copy:
     src: ntp.conf.j2
     dest: /etc/ntp.conf
   when: cis_enable_ntp and not cis_enable_chrony

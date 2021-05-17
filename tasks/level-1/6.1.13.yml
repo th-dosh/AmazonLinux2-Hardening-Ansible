@@ -5,6 +5,7 @@
 
 - name: 6.1.13 - Check if any SUID executables exist
   shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -4000
+  changed_when: false
   register: audit_6_1_13
   tags:
     - level-1

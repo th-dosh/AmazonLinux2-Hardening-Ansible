@@ -5,6 +5,7 @@
 
 - name: 5.3.4 - Ensure password hashing algorithm is SHA-512
   command: "authconfig --update --passalgo=sha512"
+  changed_when: false
   tags:
     - level-1
     - section-5

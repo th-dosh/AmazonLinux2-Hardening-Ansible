@@ -5,7 +5,6 @@
 
 - name: 6.2.10 - Audit users' dot files permissions
   script: "{{ role_path }}/files/audit_6.2.10.sh"
-  check_mode: no
   changed_when: False
   register: audit_6_2_10
   tags:
