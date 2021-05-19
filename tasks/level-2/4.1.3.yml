@@ -3,16 +3,24 @@
 
 # 4.1.3 Ensure auditing for processes that start prior to auditd is enabled
 
-- name: 4.1.3 Update grub with audit enabled
-  command: "sed -i 's/rd.shell=0/rd.shell=0 audit=1/g' /etc/default/grub"
+- name: 4.1.3 Ensure auditing for processes that start prior to auditd is enabled
+  command: "grep audit /etc/default/grub"
+  register: audit
+  changed_when: False
+  ignore_errors: true
   tags:
     - "4.1.3"
     - level-2
     - section-4
     - scored
 
-- name: 4.1.3 Update grub
-  shell: "grub2-mkconfig -o /boot/grub2/grub.cfg"
+- name: 4.1.3 Update grub with audit enabled
+  replace:
+    path: /etc/default/grub
+    regexp: 'rd.shell=0'
+    replace: "rd.shell=0 audit=1"
+  when: "'audit=1' not in audit.stdout"
+  notify: Update grub
   tags:
     - "4.1.3"
     - level-2

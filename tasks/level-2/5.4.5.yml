@@ -7,6 +7,9 @@
   copy:
     dest: "/etc/profile"
     content: "TMOUT=600\n"
+    owner: root
+    group: root
+    mode: '0644'
   tags:
     - level-2
     - "5.4.5"
@@ -16,6 +19,9 @@
   copy:
     dest: "/etc/bashrc"
     content: "TMOUT=600\n"
+    owner: root
+    group: root
+    mode: '0644'
   tags:
     - level-2
     - "5.4.5"
