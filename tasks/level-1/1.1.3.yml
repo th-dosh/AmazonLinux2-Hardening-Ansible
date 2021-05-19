@@ -2,45 +2,48 @@
 # .
 ---
 
-# 1.1.3 Ensure nodev option set on /tmp partition
+- name: 1.1.3 - Ensure nodev option set on /tmp partition
+  ansible.posix.mount:
+    path: /tmp
+    src: tmpfs
+    opts: noexec,nodev,nosuid,relatime
+    state: mounted
+    fstype: tmpfs
+  tags:
+    - level-1
+    - section-1
+    - "1.1.3"
+    - scored
+
 
 # - name: 1.1.3 - Ensure nodev option set on /tmp partition
-#   ansible.posix.mount:
-#     path: /etc/fstab
-#     src: tmpfs
-#     opts: noexec,nodev,nosuid,relatime
-#     state: mounted
-#     fstype: tmpfs
+#   replace:
+#     path:  /etc/systemd/system/local-fs.target.wants/tmp.mount
+#     regexp: "{{ item.From }}"
+#     replace: "{{ item.To }}"
+#   with_items:
+#     - { From: '^\Options=mode=1777,strictatime', To: 'Options=mode=1777,strictatime,noexec,nodev,nosuid'}
+#   tags:
+#     - level-1
+#     - section-1
+#     - "1.1.3"
+#     - scored
 
-
-- name: 1.1.3 - Ensure nodev option set on /tmp partition
-  replace:
-    path:  /etc/systemd/system/local-fs.target.wants/tmp.mount
-    regexp: "{{ item.From }}"
-    replace: "{{ item.To }}"
-  with_items:
-    - { From: '^\Options=mode=1777,strictatime', To: 'Options=mode=1777,strictatime,noexec,nodev,nosuid'}
-  tags:
-    - level-1
-    - section-1
-    - "1.1.3"
-    - scored
-
-- name: Remount a tmp volume and append noexec,nodev,nosuid to the existing options
-  mount:
-    path: /tmp
-    state: unmounted
-    opts: noexec,nodev,nosuid
-  tags:
-    - level-1
-    - section-1
-    - "1.1.3"
-    - scored
+# - name: Remount a tmp volume and append noexec,nodev,nosuid to the existing options
+#   mount:
+#     path: /tmp
+#     state: unmounted
+#     opts: noexec,nodev,nosuid
+#   tags:
+#     - level-1
+#     - section-1
+#     - "1.1.3"
+#     - scored
 
 - name: Remount a tmp volume and append noexec,nodev,nosuid to the existing options
   mount:
     path: /tmp
-    state: mounted
+    state: remounted
     opts: noexec,nodev,nosuid
   tags:
     - level-1
