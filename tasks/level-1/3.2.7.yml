@@ -5,10 +5,11 @@
 
 - name: 3.2.7 - Ensure Reverse Path Filtering is enabled
   sysctl:
-    ignore_errors: yes
+    ignoreerrors: yes
     name: "{{ item }}"
-    value: 1
+    value: '1'
     state: present
+    sysctl_set: yes
   with_items:
     - "net.ipv4.conf.all.rp_filter"
     - "net.ipv4.conf.default.rp_filter"
@@ -19,14 +20,13 @@
     - scored
 
 - name: 3.2.7 - Ensure Reverse Path Filtering is enabled by active kernel parameters
-  command: "{{ item }}"
-  changed_when: false
-  with_items:
-    - "sysctl -w net.ipv4.conf.all.rp_filter=1"
-    - "sysctl -w net.ipv4.conf.default.rp_filter=1"
-    - "sysctl -w net.ipv4.route.flush=1"
+  sysctl:
+    name: net.ipv4.route.flush 
+    value: '1'
+    state: present
+    sysctl_set: yes
   tags:
-    - level-1
-    - section-3
-    - "3.2.7"
-    - scored
+      - level-1
+      - section-3
+      - "3.2.7"
+      - scored

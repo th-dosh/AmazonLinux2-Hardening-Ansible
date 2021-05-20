@@ -5,10 +5,11 @@
 
 - name: 3.2.5 - Ensure broadcast ICMP requests are ignored
   sysctl:
-    ignore_errors: yes
+    ignoreerrors: yes
     name: "net.ipv4.icmp_echo_ignore_broadcasts"
-    value: 1
+    value: '1'
     state: present
+    sysctl_set: yes
   tags:
     - level-1
     - section-3
@@ -16,13 +17,14 @@
     - scored
 
 - name: 3.2.5 - Ensure broadcast ICMP requests are ignored by active kernel parameters
-  command: "{{ item }}"
-  changed_when: false
-  with_items:
-    - "sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=1"
-    - "sysctl -w net.ipv4.route.flush=1"
+  sysctl:
+    name: net.ipv4.route.flush 
+    value: '1'
+    state: present
+    sysctl_set: yes
   tags:
-    - level-1
-    - section-3
-    - "3.2.5"
-    - scored
+      - level-1
+      - section-3
+      - "3.2.5"
+      - scored
+

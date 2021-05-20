@@ -7,7 +7,7 @@
   shell: "egrep ^[^:]+:[^\\!*] /etc/shadow | cut -d: -f1"
   register: egrep_5_4_1_1
   check_mode: no
-
+  changed_when: false 
   tags:
     - level-1
     - section-5
@@ -27,7 +27,7 @@
 
 - name: 5.4.1.1 - Set password expiration for all user accounts
   command: "chage --maxdays {{ cis_pass_max_days }} {{ item }}"
-
+  when: egrep_5_4_1_1.stdout_lines != ""
   with_items: "{{ egrep_5_4_1_1.stdout_lines }}"
   tags:
     - level-1

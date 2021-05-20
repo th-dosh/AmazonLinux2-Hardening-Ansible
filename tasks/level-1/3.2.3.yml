@@ -5,10 +5,11 @@
 
 - name: 3.2.3 - Ensure secure ICMP redirects are not accepted
   sysctl:
-    ignore_errors: yes
+    ignoreerrors: yes
     name: "{{ item }}"
-    value: 0
+    value: '0'
     state: present
+    sysctl_set: yes
   with_items:
     - "net.ipv4.conf.all.secure_redirects"
     - "net.ipv4.conf.default.secure_redirects"
@@ -18,15 +19,15 @@
     - "3.2.3"
     - scored
 
-- name: 3.2.3 - Ensure secure ICMP redirects are not accepted by active kernel parameters
-  command: "{{ item }}"
-  changed_when: false
-  with_items:
-    - "sysctl -w net.ipv4.conf.all.secure_redirects=0"
-    - "sysctl -w net.ipv4.conf.default.secure_redirects=0"
-    - "sysctl -w net.ipv4.route.flush=1"
+- name: 3.2.3 - Ensure source routed packets are not accepted in active kernel parameters
+  sysctl:
+    name: net.ipv4.route.flush 
+    value: '1'
+    state: present
+    sysctl_set: yes
   tags:
-    - level-1
-    - section-3
-    - "3.2.3"
-    - scored
+      - level-1
+      - section-3
+      - "3.2.3"
+      - scored
+
