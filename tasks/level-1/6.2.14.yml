@@ -4,7 +4,7 @@
 # 6.2.14 Ensure no users have .rhosts files
 
 - name: 6.2.14 - Audit users'.rhosts files
-  script: "{{ role_path }}/files/audit_6.2.14.sh"
+  shell: "{{ role_path }}/files/audit_6.2.14.sh || /bin/true"
   changed_when: False
   register: audit_6_2_14
   tags:

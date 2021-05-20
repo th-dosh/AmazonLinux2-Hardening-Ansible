@@ -4,7 +4,7 @@
 # 6.2.16 Ensure no duplicate UIDs exist
 
 - name: 6.2.16 - Check if duplicate UIDs exist
-  script: "{{ role_path }}/files/audit_6.2.16.sh"
+  shell: "{{ role_path }}/files/audit_6.2.16.sh || /bin/true"
   changed_when: False
   register: audit_6_2_16
   tags:

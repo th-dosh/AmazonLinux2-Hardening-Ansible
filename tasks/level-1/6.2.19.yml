@@ -4,7 +4,7 @@
 # 6.2.19 Ensure no duplicate group names exist
 
 - name: 6.2.19 - Check if duplicate group names exist
-  script: "{{ role_path }}/files/audit_6.2.19.sh"
+  shell: "{{ role_path }}/files/audit_6.2.19.sh || /bin/true"
   changed_when: False
   register: audit_6_2_19
   tags:

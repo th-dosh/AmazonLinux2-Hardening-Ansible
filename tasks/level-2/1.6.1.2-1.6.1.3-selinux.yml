@@ -4,6 +4,11 @@
     file: 
       state: directory 
       path: /home/ec2-user/packages
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored 
 
 #to develope logic for downloading packages
 
@@ -21,6 +26,11 @@
       - http://mirror.centos.org/centos/7/os/x86_64/Packages/libreport-filesystem-2.1.11-53.el7.centos.x86_64.rpm
     register: installed_pack
     changed_when: '"\n0 saved" in installed_pack.stdout'
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored
 
 
   - name: SELinux installation
@@ -31,21 +41,42 @@
       - policycoreutils
       - selinux-policy-targeted
       - policycoreutils-python
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored 
 
   - name: Find all rpm files in packages folder
     find:
      paths: "/home/ec2-user/packages"
      patterns: "*.rpm"
-    register: package_files
+     register: package_files
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored  
+  
   
   - name: Setting package_list
     set_fact:
      package_list: "{{ package_files.files | map(attribute='path') | list}}"
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored 
 
   - name: setroubleshoot installation
     yum:
       name: "{{ package_list}}"
       state: present
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored 
 
 #SELinux enforcing mode activation
 
@@ -54,29 +85,54 @@
       path: /etc/default/grub
       regexp: 'console=tty0 console=ttyS0,115200n8' 
       replace: 'console=ttyS0,115200n8 console=tty0 selinux=1 security=selinux enforcing=1'
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored 
 
   - name: Removing old config file
     file:
       path: /etc/sysconfig/selinux
       force: yes
       state: absent
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored 
 
   - name: Making symbolic link for new config file
     file:
       src: /etc/selinux/config
       dest: /etc/sysconfig/selinux
       state: link
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored 
 
   - name: Changing selinux mode in config file
     replace:
       path: /etc/selinux/config
       regexp: 'SELINUX=disabled' 
       replace: 'SELINUX=enforcing'
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored    
 
   - name: Automatic SELinux relabeling after reboot
     command: touch /.autorelabel
     args:
      creates: /.autorelabel
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored  
 
   - name: apply changes with grub
     command: grub2-mkconfig -o /etc/grub2.cfg
@@ -84,14 +140,25 @@
     changed_when: '"\n0 done" not in grub.stdout'
     notify: 
      - Restart server
+    tags:
+      - level-2
+      - section-1
+      - "1.1.11"
+      - scored  
 
 #########
 
   - name: remove packages directory
     file:
      state: absent
-     path: /home/ec2-user/packages/     
- 
+     path: /home/ec2-user/packages/   
+    tags:
+       - level-2
+       - section-1
+       - "1.1.11"
+       - scored 
+  
+  
   handlers:
    - name: Restart server
      reboot:
