@@ -21,7 +21,7 @@
     - "3.2.1"
     - scored
 
-  - name: 3.2.1 - Ensure source routed packets are not accepted in active kernel parameters
+- name: 3.2.1 - Ensure source routed packets are not accepted in active kernel parameters
   sysctl:
     name: "{{ item }}"
     value: 1
