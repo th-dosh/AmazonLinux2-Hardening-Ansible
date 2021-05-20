@@ -5,7 +5,7 @@
 
 - name: 3.2.7 - Ensure Reverse Path Filtering is enabled
   sysctl:
-    ignore errors: yes
+    ignore_errors: yes
     name: "{{ item }}"
     value: 1
     state: present

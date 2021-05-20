@@ -5,7 +5,7 @@
 
 - name: 3.2.4 - Ensure suspicious packets are logged
   sysctl:
-    ignore errors: yes
+    ignore_errors: yes
     name: "{{ item }}"
     value: 1
     state: present
