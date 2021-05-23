@@ -9,6 +9,7 @@
     name: "{{ item }}"
     value: 0
     state: present
+    sysctl_set: yes
   with_items:
     - "net.ipv4.conf.all.accept_redirects"
     - "net.ipv4.conf.default.accept_redirects"
@@ -20,17 +21,18 @@
     - "3.2.2"
     - scored
 
-- name: 3.2.2 - Ensure ICMP redirects are not accepted by active kernel parameters
-  command: "{{ item }}"
+- name: 3.2.2 - Ensure source routed packets are not accepted in active kernel parameters
+  sysctl:
+    name: "{{ item }}" 
+    value: '1'
+    state: present
+    sysctl_set: yes
   with_items:
-    - "sysctl -w net.ipv4.conf.all.accept_redirects=0"
-    - "sysctl -w net.ipv4.conf.default.accept_redirects=0"
-    - "sysctl -w net.ipv6.conf.all.accept_redirects=0"
-    - "sysctl -w net.ipv6.conf.default.accept_redirects=0"
-    - "sysctl -w net.ipv4.route.flush=1"
-    - "sysctl -w net.ipv6.route.flush=1"
+      - net.ipv4.route.flush
+      - net.ipv6.route.flush
   tags:
-    - level-1
-    - section-3
-    - "3.2.2"
-    - scored
+      - level-1
+      - section-3
+      - "3.2.2"
+      - scored
+

@@ -5,6 +5,7 @@
 
 - name: 6.1.10 - Audit if any world writable files exist
   shell: df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -0002
+  changed_when: false
   register: audit_6_1_10
   tags:
     - level-1

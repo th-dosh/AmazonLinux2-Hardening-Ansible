@@ -7,8 +7,9 @@
   sysctl:
     ignoreerrors: yes
     name: "net.ipv4.icmp_ignore_bogus_error_responses"
-    value: 1
+    value: '1'
     state: present
+    sysctl_set: yes
   tags:
     - level-1
     - section-3
@@ -16,12 +17,13 @@
     - scored
 
 - name: 3.2.6 - Ensure bogus ICMP responses are ignored by active kernel parameters
-  command: "{{ item }}"
-  with_items:
-    - "sysctl -w net.ipv4.icmp_ignore_bogus_error_responses=1"
-    - "sysctl -w net.ipv4.route.flush=1"
+  sysctl:
+    name: net.ipv4.route.flush 
+    value: '1'
+    state: present
+    sysctl_set: yes
   tags:
-    - level-1
-    - section-3
-    - "3.2.6"
-    - scored
+      - level-1
+      - section-3
+      - "3.2.6"
+      - scored

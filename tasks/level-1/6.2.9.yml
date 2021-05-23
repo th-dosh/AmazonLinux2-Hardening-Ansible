@@ -4,8 +4,7 @@
 # 6.2.9 Ensure users own their home directories
 
 - name: 6.2.9 - Audit ownership of users' home directories
-  script: "{{ role_path }}/files/audit_6.2.9.sh"
-  check_mode: no
+  shell: "{{ role_path }}/files/audit_6.2.9.sh || /bin/true"
   changed_when: False
   register: audit_6_2_9
   tags:

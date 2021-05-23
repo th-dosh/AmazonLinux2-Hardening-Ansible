@@ -3,10 +3,8 @@
 
 - include: "level-2/1.6.1.1.yml"
   when: "'1.6.1.1' not in cis_level_2_exclusions"
-- include: "level-2/1.6.1.2.yml"
+- include: "level-2/1.6.1.2-1.6.1.3-selinux.yml"
   when: "'1.6.1.2' not in cis_level_2_exclusions"
-- include: "level-2/1.6.1.3.yml"
-  when: "'1.6.1.3' not in cis_level_2_exclusions"
 - include: "level-2/1.6.1.4.yml"
   when: "'1.6.1.4' not in cis_level_2_exclusions"
 - include: "level-2/1.6.1.5.yml"

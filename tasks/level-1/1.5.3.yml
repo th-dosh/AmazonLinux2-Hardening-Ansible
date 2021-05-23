@@ -4,9 +4,9 @@
 # 1.5.3 Ensure prelink is disabled
 
 - name: Check if prelink binary exists
-  command: which prelink
-  ignore_errors: true
-  register: which_1_5_3
+  command: rpm -q prelink
+  register: prelink
+  changed_when: prelink.stdout is not search('not installed')
   tags:
     - level-1
     - "1.5.3"
@@ -14,7 +14,7 @@
 
 - name: Restore prelinked binaries
   command: prelink -ua
-  when: which_1_5_3.rc is defined and which_1_5_3.rc == 0
+  when: prelink.changed
   tags:
     - level-1
     - "1.5.3"

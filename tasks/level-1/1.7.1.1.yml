@@ -9,7 +9,9 @@
 # displayed by mingetty options, are not present.
 # On amazon linux, this is the 30-banner script within /etc/update-motd.d/
 - name: 1.7.1.1 - Empty motd
-  shell: "> /etc/motd"
+  copy:
+    src: /dev/null
+    dest: /etc/motd
   tags:
     - level-1
     - 1.7.1.1

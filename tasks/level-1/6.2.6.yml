@@ -16,8 +16,7 @@
     - scored
 
 - name: 6.2.6 - Audit root PATH Integrity
-  command: bash -l /tmp/audit_6.2.6.sh
-  check_mode: no
+  shell: bash -l /tmp/audit_6.2.6.sh || /bin/true
   changed_when: False
   register: audit_6_2_6
   tags:
