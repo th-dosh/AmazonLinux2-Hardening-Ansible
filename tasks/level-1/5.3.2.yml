@@ -5,7 +5,7 @@
 
 - name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - before)
   pamd:
-    name: {{ item }}
+    name: "{{ item }}"
     type: auth
     control: sufficient
     module_path: pam_unix.so
@@ -29,7 +29,7 @@
 
 - name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - last)
   pamd:
-    name: {{ item }}
+    name: "{{ item }}"
     type: auth
     control: sufficient
     module_path: pam_unix.so
@@ -42,7 +42,7 @@
           unlock_time=900'
     state: after
   with_items:
-    - system-auth
+   - system-auth
    - password-auth
   tags:
     - level-1
@@ -52,7 +52,7 @@
 
 - name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_faillock.so - after)
   pamd:
-    name: {{ items }}
+    name: "{{ items }}"
     type: auth
     control: sufficient
     module_path: pam_unix.so
@@ -75,7 +75,7 @@
 
 - name: 5.3.2 - Ensure lockout for failed password attempts is configured(pam_unix.so)
   pamd:
-    name: {{ item }}
+    name: "{{ item }}"
     type: auth
     control: sufficient
     module_path: pam_unix.so

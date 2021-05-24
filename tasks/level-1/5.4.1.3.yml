@@ -7,7 +7,7 @@
   shell: "egrep ^[^:]+:[^\\!*] /etc/shadow | cut -d: -f1"
   register: egrep_5_4_1_3
   check_mode: no
-  changed_when: False
+  changed_when: false
   tags:
     - level-1
     - section-5
