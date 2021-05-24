@@ -6,6 +6,7 @@
 - name: Check if prelink binary exists
   command: rpm -q prelink
   register: prelink
+  ignore_errors: yes
   changed_when: prelink.stdout is not search('not installed')
   tags:
     - level-1
