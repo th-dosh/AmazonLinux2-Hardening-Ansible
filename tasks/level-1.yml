@@ -251,8 +251,6 @@
   when: "'5.4.2' not in cis_level_1_exclusions"
 - include: "level-1/5.4.3.yml"
   when: "'5.4.3' not in cis_level_1_exclusions"
-- include: "level-1/5.4.4.yml"
-  when: "'5.4.4' not in cis_level_1_exclusions"
 - include: "level-1/5.5.yml"
   when: "'5.5' not in cis_level_1_exclusions"
 - include: "level-1/6.1.2.yml"
