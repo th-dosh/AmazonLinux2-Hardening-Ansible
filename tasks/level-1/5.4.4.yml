@@ -5,14 +5,8 @@
 #Optimize below into variables
 
 
-- name: 5.4.4 - Ensure default user umask is 027 or more restrictive
-  lineinfile:
-    dest: "{{ i# 5.4.4 Ensure default user umask is 027 or more restrictive
-#Optimize below into variables
-
 - name: CIS 5.4.4 Ensure default user umask is 027 or more restrictive (/etc/profile 1/2)
-  check_mode: false
-  shell: tail -1 /etc/profile | grep "umask 027"
+  shell: tail -1 /etc/profile | grep 'umask 027'
   register: umask_grep
   changed_when: umask_grep.rc != 0
   failed_when: false
@@ -32,8 +26,7 @@
     - scored
 
 - name: CIS 5.4.4 Ensure default user umask is 027 or more restrictive (/etc/bashrc 1/2)
-  check_mode: false
-  shell: tail -1 /etc/bashrc | grep "umask 027"
+  shell: tail -1 /etc/bashrc | grep 'umask 027'
   register: umask_grep
   changed_when: umask_grep.rc != 0
   failed_when: false
@@ -43,7 +36,7 @@
     - "5.4.4"
     - scored
 
-- name: CIS 5.4.4 Ensure default user umask is 027 or more restrictive (/etc/bashrc 2/2)
+- name: 5.4.4 Ensure default user umask is 027 or more restrictive (/etc/bashrc 2/2)
   shell: echo umask 027 >> /etc/bashrc
   when: umask_grep is changed
   tags:
@@ -59,6 +52,8 @@
     line: umask 027
     state: present
   loop:
+    - /etc/bashrc
+    - /etc/profile
     - /etc/profile.d/colorgrep.sh
     - /etc/profile.d/which2.sh
     - /etc/profile.d/less.sh

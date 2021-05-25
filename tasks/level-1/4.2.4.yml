@@ -21,7 +21,7 @@
     - "{{ find_logfiles_4_2_4.stdout_lines }}"
   register: result
   until: result is not changed
-  retries: 20
+  retries: 30
   delay: 5
   tags:
     - level-1
